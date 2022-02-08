@@ -15,7 +15,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
-			<version>3.141.59</version>
+			<version>4.1.1</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -25,6 +25,27 @@
 			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>selenide</artifactId>
+			<version>6.3.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Intentar arreglar selenide -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.35</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.35</version>
+		</dependency>
+
+
 
 	</dependencies>
 
