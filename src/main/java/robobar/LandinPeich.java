@@ -30,7 +30,7 @@ public class LandinPeich {
 	    }
 	
 	public String valorActual() {
-		return driver.findElement(By.cssSelector("tr:nth-child(4) > .ng-binding")).getAttribute("value");
+		return driver.findElement(By.cssSelector("tr:nth-child(4) > .ng-binding")).getText();
 	}	
 	
 }

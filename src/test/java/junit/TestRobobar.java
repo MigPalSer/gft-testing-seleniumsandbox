@@ -2,6 +2,8 @@ package junit;
 
 import static org.junit.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +22,7 @@ public class TestRobobar {
 	    System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 	    driver = new ChromeDriver();
 	    driver.get("https://migpalser.github.io/robobar-example/#!/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
 	    landing=new LandinPeich(driver);
 	}
 	
@@ -38,7 +41,7 @@ public class TestRobobar {
 	@Test
 	public void valoresTest() {
 		landing.clickCola();
-		assertTrue(landing.valorActual().equals("€3.00"));
+		assertTrue(landing.valorActual().equals("€1.25"));
 	}
 	
 }
