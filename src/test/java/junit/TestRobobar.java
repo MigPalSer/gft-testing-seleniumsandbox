@@ -1,6 +1,7 @@
 package junit;
 
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
@@ -62,5 +63,33 @@ public class TestRobobar {
 		assertTrue(landing.orderIsDisabled());
 		landing.clickCola();
 		assertTrue(!landing.orderIsDisabled());
+	}
+	
+    @ParameterizedTest
+    @CsvFileSource(resources = "/edadtest.csv")
+	public void edadTest(int coca, int birra, int vinata, int edad, boolean exito) {
+    	for (int i = 0; i < coca; i++) {
+    		landing.clickCola();			
+		}
+    	for (int i = 0; i < birra; i++) {
+    		landing.clickBeer();			
+		}
+    	for (int i = 0; i < vinata; i++) {
+    		landing.clickWine();			
+		}
+    	landing.clickOrder();
+    	
+    	if(birra>0||vinata>0) {
+    	landing.introducirEdad(edad);
+    	}
+    	
+    	landing.clickOrder();
+    	
+    	if(exito) {
+    		assertTrue(landing.orderSuccess());
+    	}else {
+    		assertFalse(landing.orderSuccess());
+    	}
+		
 	}
 }
