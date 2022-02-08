@@ -1,12 +1,15 @@
 package junit;
 
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -17,7 +20,7 @@ public class TestRobobar {
 	private WebDriver driver;
 	private LandinPeich landing;
 	
-	@Before
+	@BeforeEach
 	public void setUp() {
 	    System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 	    driver = new ChromeDriver();
@@ -26,7 +29,7 @@ public class TestRobobar {
 	    landing=new LandinPeich(driver);
 	}
 	
-	@After
+	@AfterEach
 	public void end() {
 		driver.quit();
 	}
@@ -38,10 +41,26 @@ public class TestRobobar {
 	}
 	
 	
-	@Test
-	public void valoresTest() {
-		landing.clickCola();
-		assertTrue(landing.valorActual().equals("€1.25"));
+    @ParameterizedTest
+    @CsvFileSource(resources = "/robovalorestest.csv")
+	public void valoresTest(int coca, int birra, int vinata, String cuenta) {
+    	for (int i = 0; i < coca; i++) {
+    		landing.clickCola();			
+		}
+    	for (int i = 0; i < birra; i++) {
+    		landing.clickBeer();			
+		}
+    	for (int i = 0; i < vinata; i++) {
+    		landing.clickWine();			
+		}
+    	
+		assertTrue(landing.valorActual().equals("€"+cuenta));
 	}
 	
+	@Test
+	public void habilitacionOrderTest() {
+		assertTrue(landing.orderIsDisabled());
+		landing.clickCola();
+		assertTrue(!landing.orderIsDisabled());
+	}
 }

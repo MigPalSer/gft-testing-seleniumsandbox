@@ -1,7 +1,7 @@
 package selenide;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByLinkText;
 
