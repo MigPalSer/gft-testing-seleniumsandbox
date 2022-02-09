@@ -17,6 +17,5 @@ public class JomPeich {
         return new LoguinPeich(driver);
    }
 
-   
     
 }

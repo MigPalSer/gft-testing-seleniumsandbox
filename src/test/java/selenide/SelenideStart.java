@@ -18,6 +18,7 @@ public class SelenideStart {
 		open("https://the-internet.herokuapp.com/");
 		$("BasicAuth").click();
 		$(By.name("name")).shouldHave(text("Name"));
+		
 	}
 
 }
