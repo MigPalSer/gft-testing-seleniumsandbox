@@ -41,9 +41,8 @@ public class TestRobobarSelenide {
     @ParameterizedTest
     @CsvFileSource(resources = "/robovalorestest.csv")
 	public void valoresTest(int coca, int birra, int vinata, String cuenta) {
-    	for (int i = 0; i < coca; i++) {
-    		landing.clickCola();			
-		}
+    	 landing.clickCola(coca);
+    	 
     	for (int i = 0; i < birra; i++) {
     		landing.clickBeer();			
 		}

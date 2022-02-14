@@ -32,6 +32,12 @@ public class LandinPeichSelenide {
 	public void clickCola() {
 		btnAddCola.click();
 	}
+	
+	public void clickCola(int numero) {
+		for (int i = 0; i < numero; i++) {
+			btnAddCola.click();
+		}
+	}
 
 	public void clickWine() {
 		btnAddWine.click();
@@ -44,15 +50,23 @@ public class LandinPeichSelenide {
 		 btnCheckout.click(); }
 	
 	public boolean orderIsDisabled() { 
-		Optional<String> result=Optional.ofNullable(btnCheckout.getAttribute("disabled"));
-		 return result.orElse("false").equals("true");}
+		//Optional<String> result=Optional.ofNullable(btnCheckout.getAttribute("disabled"));
+		 //return result.orElse("false").equals("true");
+		 String result=btnCheckout.getAttribute("disabled");
+		 //True si vale y null si no vale
+		 try {
+			 return result.equals("true");
+		} catch (Exception e) {
+			return false;
+}
+	}
 	
 	public void introducirEdad(int edad) {
 		 ageInput.click(); //TODO probar si funciona sin ello
 		 ageInput.sendKeys(Integer.toString(edad));}
 	
-	public String valorActual() { return
-			 txtTotal.getText(); }
+	public String valorActual() { 
+		return txtTotal.getText(); }
 	
 	public boolean orderSuccess() { 
 		String currentUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
